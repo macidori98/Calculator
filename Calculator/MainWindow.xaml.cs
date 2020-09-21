@@ -49,6 +49,7 @@ namespace Calculator
             {
               this.result = MyMath.Div(this.lastNumber, temp);
             }
+
             break;
 
           default:
