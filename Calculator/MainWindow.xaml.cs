@@ -43,7 +43,7 @@ namespace Calculator
           case SelectedOperator.Division:
             if (temp == 0)
             {
-              MessageBox.Show("Division by 0");
+              MessageBox.Show("Division by 0 is not supported", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
