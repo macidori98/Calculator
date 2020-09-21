@@ -41,7 +41,14 @@ namespace Calculator
             break;
 
           case SelectedOperator.Division:
-            this.result = MyMath.Div(this.lastNumber, temp);
+            if (temp == 0)
+            {
+              MessageBox.Show("Division by 0");
+            }
+            else
+            {
+              this.result = MyMath.Div(this.lastNumber, temp);
+            }
             break;
 
           default:
@@ -77,36 +84,35 @@ namespace Calculator
     private void AcButton_Click(object sender, RoutedEventArgs e)
     {
       this.resultLabel.Content = "0";
+      this.result = 0;
+      this.lastNumber = 0;
     }
 
     private void OperationButton_Click(object sender, RoutedEventArgs e)
     {
+      if (double.TryParse(this.resultLabel.Content.ToString(), out lastNumber))
+      {
+        this.resultLabel.Content = "0";
+      }
+
       if (sender == this.divisionButton)
       {
-        if (double.TryParse(this.resultLabel.Content.ToString(), out lastNumber))
-        {
-          this.resultLabel.Content = "0";
-        }
+        this.selectedOperator = SelectedOperator.Division;
+      }
 
-        if (sender == this.multiplyButton)
-        {
-          this.selectedOperator = SelectedOperator.Multiplication;
-        }
+      if (sender == this.plusButton)
+      {
+        this.selectedOperator = SelectedOperator.Addition;
+      }
 
-        if (sender == this.divisionButton)
-        {
-          this.selectedOperator = SelectedOperator.Division;
-        }
+      if (sender == this.multiplyButton)
+      {
+        this.selectedOperator = SelectedOperator.Multiplication;
+      }
 
-        if (sender == this.plusButton)
-        {
-          this.selectedOperator = SelectedOperator.Addition;
-        }
-
-        if (sender == this.minusButton)
-        {
-          this.selectedOperator = SelectedOperator.Substraction;
-        }
+      if (sender == this.minusButton)
+      {
+        this.selectedOperator = SelectedOperator.Substraction;
       }
     }
 
