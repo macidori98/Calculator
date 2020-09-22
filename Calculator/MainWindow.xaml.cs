@@ -62,11 +62,19 @@ namespace Calculator
 
     private void PercentageButton_Click(object sender, RoutedEventArgs e)
     {
-      if (this.resultLabel.Content.ToString() != "0")
+      if (this.lastNumber == 0)
       {
         if (double.TryParse(this.resultLabel.Content.ToString(), out lastNumber))
         {
           this.resultLabel.Content = (this.lastNumber / 100);
+        }
+      }
+      else
+      {
+        double temp;
+        if (double.TryParse(this.resultLabel.Content.ToString(), out temp))
+        {
+          this.resultLabel.Content = ((this.lastNumber*temp) / 100);
         }
       }
     }
